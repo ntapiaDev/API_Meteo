@@ -142,6 +142,32 @@ body {
             justify-content: space-between;
         }
 
+        &__statut {
+            position: absolute;
+            width: 300px;
+            top: 350px;
+            left: 94px;
+            font-weight: bold;
+            font-size: 1.2em;
+            text-shadow: $white-shadow;
+            @include flex-center();
+
+            p.success {
+                color: green;
+            }
+            p.error {
+                color: red;
+            }
+        }
+
+        &__timezone {
+            position: absolute;
+            width: 200px;
+            top: 435px;
+            left: 138px;
+            @include flex-center();
+        }
+
         &__hour {
             position: absolute;
             top: 375px;
@@ -173,12 +199,13 @@ body {
 
     &__week {
         position: absolute;
-        z-index: 5;
+        z-index: 0;
         width: 720px;
         height: 720px;
         top: -120px;
         left: -120px;
         border-radius: 50%;
+        transition: rotate 2s;
 
         &__day {
             position: absolute;

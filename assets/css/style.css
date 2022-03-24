@@ -184,6 +184,49 @@ body {
           justify-content: space-between;
 }
 
+.meteo__info__statut {
+  position: absolute;
+  width: 300px;
+  top: 350px;
+  left: 94px;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-shadow: 1px 0 0 #EEE, 1px 1px 0 #EEE, 0 1px 0 #EEE, -1px 1px 0 #EEE, -1px 0 0 #EEE, -1px -1px 0 #EEE, 0 -1px 0 #EEE, 1px -1px 0 #EEE;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.meteo__info__statut p.success {
+  color: green;
+}
+
+.meteo__info__statut p.error {
+  color: red;
+}
+
+.meteo__info__timezone {
+  position: absolute;
+  width: 200px;
+  top: 435px;
+  left: 138px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .meteo__info__hour {
   position: absolute;
   top: 375px;
@@ -233,12 +276,14 @@ body {
 
 .meteo__week {
   position: absolute;
-  z-index: 5;
+  z-index: 0;
   width: 720px;
   height: 720px;
   top: -120px;
   left: -120px;
   border-radius: 50%;
+  -webkit-transition: rotate 2s;
+  transition: rotate 2s;
 }
 
 .meteo__week__day {

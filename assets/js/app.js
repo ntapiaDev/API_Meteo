@@ -10,6 +10,7 @@ const weather = document.querySelector(".meteo__now__weather")
 const temp = document.querySelector(".meteo__now__temp")
 
 const city = document.querySelector(".meteo__info__city")
+const country = document.querySelector(".meteo__info__country")
 const coord = document.querySelector(".meteo__info__coord")
 const press = document.querySelector(".meteo__info__press")
 const humidity = document.querySelector(".meteo__info__humidity")
@@ -21,8 +22,12 @@ const previsionNames = document.querySelectorAll(".meteo__prevision__name")
 const previsionValues = document.querySelectorAll(".meteo__prevision__value")
 
 const dateInfo = document.querySelector(".meteo__now__date")
-const hour = document.querySelector(".meteo__info__hour")
 
+const statut = document.querySelector(".meteo__info__statut")
+const hour = document.querySelector(".meteo__info__hour")
+const timezoneDisplay = document.querySelector(".meteo__info__timezone")
+
+const week = document.querySelector(".meteo__week")
 const weeks = document.querySelectorAll(".meteo__week__day")
 const weekNames = document.querySelectorAll(".meteo__week__name")
 const weekValues = document.querySelectorAll(".meteo__week__value")
@@ -114,6 +119,8 @@ function callAPI(lat, long, timezone) {
             displayTime()
         }, 1000)
 
+        timezoneDisplay.innerText = apiResults.timezone
+
         // Afficher la date
         let dateOptions = {weekday: "long", year: "numeric", month: "long", day: "2-digit"}
         let day = new Date(dt).toLocaleDateString("fr-FR", dateOptions)
@@ -193,21 +200,32 @@ city.addEventListener("keydown", function(e) {
 const cityBtn = document.querySelector(".meteo__info__changeCity")
 cityBtn.addEventListener("click", changeCity)
 
+let rotate = 0
 function changeCity() {
     if (city.value !== "") {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${APIKEY}`)
+        let fr = ""
+        if (country.checked) {
+            fr = ",fr"
+        }
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city.value}${fr}&appid=${APIKEY}`)
         .then((response) => {
             return response.json()
         })
         .then((data) => {
             apiResults = data
-
-            let lat = apiResults.coord.lat
-            let long = apiResults.coord.lon
-            let timezone = apiResults.timezone
-            callAPI(lat, long, timezone)
-            city.placeholder = apiResults.name
-            coord.innerText = `Latitude : ${lat.toFixed(2)} - Longitude : ${long.toFixed(2)}`
+            if (apiResults.cod !== "404") {
+                let lat = apiResults.coord.lat
+                let long = apiResults.coord.lon
+                let timezone = apiResults.timezone
+                callAPI(lat, long, timezone)
+                city.placeholder = apiResults.name
+                coord.innerText = `Latitude : ${lat.toFixed(2)} - Longitude : ${long.toFixed(2)}`
+                rotate += 360
+                week.style.rotate = rotate + "deg"
+                statut.innerHTML = '<p class="success">Recherche effectuée</p>'
+            } else {
+                statut.innerHTML = '<p class="error">Ville non trouvée</p>'
+            }
         })
     }
 }
