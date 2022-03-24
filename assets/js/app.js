@@ -20,6 +20,7 @@ const nowImg = document.querySelector(".meteo__now__img")
 const previsionNames = document.querySelectorAll(".meteo__prevision__name")
 const previsionValues = document.querySelectorAll(".meteo__prevision__value")
 
+const dateInfo = document.querySelector(".meteo__now__date")
 const hour = document.querySelector(".meteo__info__hour")
 
 const weeks = document.querySelectorAll(".meteo__week__day")
@@ -75,21 +76,23 @@ function callAPI(lat, long, timezone) {
         press.innerText = "Pression atmosphérique : " + apiResults.current.pressure + " hPa"
         humidity.innerText = "Humidité de l'air : " + apiResults.current.humidity + "%"
         wind.innerText = "Vitesse du vent : " + apiResults.current.wind_speed.toFixed(0) + " km/h"
-        
+
         // Heure en temps réel
-        clearInterval(realTime)
+        if (realTime !== undefined) {
+            clearInterval(realTime)
+        }
         if (timezone === undefined) {
             timezone = 3600
         }
-        let td = apiResults.current.dt * 1000 + (timezone - 3600) * 1000
+        let dt = apiResults.current.dt * 1000 + (timezone - 3600) * 1000
 
-        let date = new Date(td)
+        let date
         let hours
         let minutes
         let seconds
 
         function displayTime() {
-            date = new Date(td)
+            date = new Date(dt)
             hours = date.getHours()
             minutes = date.getMinutes()
             seconds = date.getSeconds()
@@ -107,9 +110,14 @@ function callAPI(lat, long, timezone) {
 
         displayTime()
         realTime = setInterval(function() {
-            td += 1000 // Temps js calculé en millisecondes
+            dt += 1000 // Temps js calculé en millisecondes
             displayTime()
         }, 1000)
+
+        // Afficher la date
+        let dateOptions = {weekday: "long", year: "numeric", month: "long", day: "2-digit"}
+        let day = new Date(dt).toLocaleDateString("fr-FR", dateOptions)
+        dateInfo.innerText = day
 
         // Chargement de l'icone
         let time = date.getHours()
@@ -146,18 +154,27 @@ function callAPI(lat, long, timezone) {
         function changeBackground(target, icon) {
             switch(icon) {
                 case "01d":
+                case "01n":
                 case "02d":
+                case "02n":
                     target.style.background = blueSky
                     break
                 case "03d":
+                case "03n":
                 case "04d":
+                case "04n":
                 case "09d":
-                case "13d": 
+                case "09n":
+                case "13d":
+                case "13n": 
                 case "50d":
+                case "50n":
                     target.style.background = greySky
                     break
                 case "10d":
+                case "10n":
                 case "11d":
+                case "11n":
                     target.style.background = darkSky
                     break
             }
@@ -166,7 +183,7 @@ function callAPI(lat, long, timezone) {
         loading.classList.add("hidden")
         setTimeout(function() {
             loading.style.zIndex = "0"
-        }, 1500)
+        }, 1300)
     })
 }
 
@@ -177,7 +194,6 @@ city.addEventListener("keydown", function(e) {
         changeCity()
     }
 })
-
 const cityBtn = document.querySelector(".meteo__info__changeCity")
 cityBtn.addEventListener("click", changeCity)
 
@@ -194,13 +210,8 @@ function changeCity() {
             let long = apiResults.coord.lon
             let timezone = apiResults.timezone
             callAPI(lat, long, timezone)
+            city.placeholder = apiResults.name
             coord.innerText = `Latitude : ${lat.toFixed(2)} - Longitude : ${long.toFixed(2)}`
         })
     }
 }
-
-// Afficher la date (locale)
-const date = document.querySelector(".meteo__now__date")
-let dateOptions = {weekday: "long", year: "numeric", month: "long", day: "2-digit"}
-let time = new Date().toLocaleDateString("fr-FR", dateOptions)
-date.innerText = time
