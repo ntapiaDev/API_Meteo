@@ -1,0 +1,84 @@
+@import "mixins";
+@import "variables";
+
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    @include flex-center;
+}
+
+.meteo {
+    position: relative;
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    border: 1px solid black;
+    @include flex-center;
+    flex-direction: column;
+
+    // Overlay de chargementde l'API
+    &__loading {
+        position: absolute;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: #666;
+        transition: opacity 1s ease-out;
+        @include flex-center;
+
+        &.hidden {
+            opacity: 0;
+        }
+
+        img {
+            width: 150px;
+        }
+    }
+
+    &__date {
+        margin: 25px;
+
+        &::first-letter {
+            text-transform: capitalize;
+        }
+    }
+
+    &__info {
+
+        &__weather::first-letter {
+            text-transform: uppercase;
+        }
+    }
+
+    &__now {
+        position: absolute;
+        z-index: 5;
+        width: 250px;
+        height: 250px;
+        top: -50px;
+        left: -50px;
+        border-radius: 50%;
+        border: 1px solid black;
+    }
+
+    &__week {
+        position: absolute;
+        z-index: 5;
+        width: 720px;
+        height: 720px;
+        top: -120px;
+        left: -120px;
+        border-radius: 50%;
+        border: 1px solid red;
+
+        &__day {
+            
+        }
+    }
+}
