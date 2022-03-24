@@ -282,8 +282,10 @@ body {
   top: -120px;
   left: -120px;
   border-radius: 50%;
-  -webkit-transition: rotate 2s;
-  transition: rotate 2s;
+  -webkit-transition: -webkit-transform 2s;
+  transition: -webkit-transform 2s;
+  transition: transform 2s;
+  transition: transform 2s, -webkit-transform 2s;
 }
 
 .meteo__week__day {

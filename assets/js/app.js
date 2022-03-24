@@ -221,7 +221,7 @@ function changeCity() {
                 city.placeholder = apiResults.name
                 coord.innerText = `Latitude : ${lat.toFixed(2)} - Longitude : ${long.toFixed(2)}`
                 rotate += 360
-                week.style.rotate = rotate + "deg"
+                week.style.transform = "rotate(" + rotate + "deg)"
                 statut.innerHTML = '<p class="success">Recherche effectuée</p>'
             } else {
                 statut.innerHTML = '<p class="error">Ville non trouvée</p>'

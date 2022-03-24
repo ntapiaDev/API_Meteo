@@ -205,7 +205,7 @@ body {
         top: -120px;
         left: -120px;
         border-radius: 50%;
-        transition: rotate 2s;
+        transition: transform 2s;
 
         &__day {
             position: absolute;
