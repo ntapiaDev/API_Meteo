@@ -125,7 +125,7 @@ function callAPI(lat, long) {
                     break
             }
         }
-
+        
         loading.classList.add("hidden")
         setTimeout(function() {
             loading.style.zIndex = "0"
@@ -139,17 +139,20 @@ const cityBtn = document.querySelector(".meteo__info__changeCity")
 cityBtn.addEventListener("click", changeCity)
 
 function changeCity() {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city.value},frq&appid=${APIKEY}`)
-    .then((response) => {
-        return response.json()
-    })
-    .then((data) => {
-        apiResults = data
+    if (city.value !== "") {
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city.value},frq&appid=${APIKEY}`)
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            apiResults = data
 
-        let lat = apiResults.coord.lat
-        let long = apiResults.coord.lon
-        callAPI(lat, long)
-    })
+            let lat = apiResults.coord.lat
+            let long = apiResults.coord.lon
+            callAPI(lat, long)
+            coord.innerText = `Latitude : ${lat.toFixed(2)} - Longitude : ${long.toFixed(2)}`
+        })
+    }
 }
 
 // Afficher l'heure
