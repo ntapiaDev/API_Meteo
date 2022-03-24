@@ -143,11 +143,7 @@ function callAPI(lat, long, timezone) {
         for (let i = 0; i < weeks.length; i++) {
             weekNames[i].innerText = actualDays[i].slice(0, 3)
             weekValues[i].innerText = Math.trunc(apiResults.daily[i + 1].temp.day) + "°C"
-            if (time >= 6 && time < 21) {
-                weekImg[i].src = `./assets/img/day/${apiResults.daily[i + 1].weather[0].icon}.svg`
-            } else {
-                weekImg[i].src = `./assets/img/night/${apiResults.daily[i + 1].weather[0].icon}.svg`
-            }
+            weekImg[i].src = `./assets/img/day/${apiResults.daily[i + 1].weather[0].icon}.svg`
             changeBackground(weeks[i], apiResults.daily[i + 1].weather[0].icon)
         }
 
