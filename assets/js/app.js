@@ -2,6 +2,7 @@ import actualDays from "./modules/days.js"
 
 const APIKEY = "659eb6423c655c0f0e67fae273c7bd6a"
 let apiResults
+let realTime
 
 const meteo = document.querySelector(".meteo")
 
@@ -18,6 +19,8 @@ const now = document.querySelector(".meteo__now")
 const nowImg = document.querySelector(".meteo__now__img")
 const previsionNames = document.querySelectorAll(".meteo__prevision__name")
 const previsionValues = document.querySelectorAll(".meteo__prevision__value")
+
+const hour = document.querySelector(".meteo__info__hour")
 
 const weeks = document.querySelectorAll(".meteo__week__day")
 const weekNames = document.querySelectorAll(".meteo__week__name")
@@ -58,7 +61,7 @@ function callLoc(lat, long) {
     })
 }
 
-function callAPI(lat, long) {
+function callAPI(lat, long, timezone) {
     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=minutely&units=metric&lang=fr&appid=${APIKEY}`)
     .then((response) => {
         return response.json()
@@ -125,6 +128,38 @@ function callAPI(lat, long) {
                     break
             }
         }
+
+        // Heure en temps réel
+        clearInterval(realTime)
+        if (timezone === undefined) {
+            timezone = 3600
+        }
+        let td = apiResults.current.dt * 1000 + (timezone - 3600) * 1000
+
+        let date = new Date(td)
+        let hours = date.getHours()
+        let minutes = date.getMinutes()
+        let seconds = date.getSeconds()
+        hour.innerText = hours + " : " + minutes + " : " + seconds
+        
+        realTime = setInterval(function() {
+            td += 1000 // Temps js calculé en millisecondes
+            date = new Date(td)
+            hours = date.getHours()
+            minutes = date.getMinutes()
+            seconds = date.getSeconds()
+            if (hours < 10) {
+                hours = "0" + hours
+            }
+            if (minutes < 10) {
+                minutes = "0" + minutes
+            }
+            if (seconds < 10) {
+                seconds = "0" + seconds
+            }
+        
+            hour.innerText = hours + " : " + minutes + " : " + seconds
+        }, 1000)
         
         loading.classList.add("hidden")
         setTimeout(function() {
@@ -134,13 +169,12 @@ function callAPI(lat, long) {
 }
 
 // Nouvelle recherche
-
 const cityBtn = document.querySelector(".meteo__info__changeCity")
 cityBtn.addEventListener("click", changeCity)
 
 function changeCity() {
     if (city.value !== "") {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city.value},frq&appid=${APIKEY}`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${APIKEY}`)
         .then((response) => {
             return response.json()
         })
@@ -149,33 +183,15 @@ function changeCity() {
 
             let lat = apiResults.coord.lat
             let long = apiResults.coord.lon
-            callAPI(lat, long)
+            let timezone = apiResults.timezone
+            callAPI(lat, long, timezone)
             coord.innerText = `Latitude : ${lat.toFixed(2)} - Longitude : ${long.toFixed(2)}`
         })
     }
 }
 
-// Afficher l'heure
+// Afficher la date (locale)
 const date = document.querySelector(".meteo__now__date")
 let dateOptions = {weekday: "long", year: "numeric", month: "long", day: "2-digit"}
 let time = new Date().toLocaleDateString("fr-FR", dateOptions)
 date.innerText = time
-
-const hour = document.querySelector(".meteo__info__hour")
-setInterval(function() {
-    let date = new Date()
-    let hours = date.getHours()
-    let minutes = date.getMinutes()
-    let seconds = date.getSeconds()
-    if (hours < 10) {
-        hours = "0" + hours
-    }
-    if (minutes < 10) {
-        minutes = "0" + minutes
-    }
-    if (seconds < 10) {
-        seconds = "0" + seconds
-    }
-
-    hour.innerText = hours + " : " + minutes + " : " + seconds
-}, 1000)
