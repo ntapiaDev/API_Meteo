@@ -76,9 +76,43 @@ function callAPI(lat, long, timezone) {
         humidity.innerText = "Humidité de l'air : " + apiResults.current.humidity + "%"
         wind.innerText = "Vitesse du vent : " + apiResults.current.wind_speed.toFixed(0) + " km/h"
         
+        // Heure en temps réel
+        clearInterval(realTime)
+        if (timezone === undefined) {
+            timezone = 3600
+        }
+        let td = apiResults.current.dt * 1000 + (timezone - 3600) * 1000
+
+        let date = new Date(td)
+        let hours
+        let minutes
+        let seconds
+
+        function displayTime() {
+            date = new Date(td)
+            hours = date.getHours()
+            minutes = date.getMinutes()
+            seconds = date.getSeconds()
+            if (hours < 10) {
+                hours = "0" + hours
+            }
+            if (minutes < 10) {
+                minutes = "0" + minutes
+            }
+            if (seconds < 10) {
+                seconds = "0" + seconds
+            }
+            hour.innerText = hours + " : " + minutes + " : " + seconds
+        }
+
+        displayTime()
+        realTime = setInterval(function() {
+            td += 1000 // Temps js calculé en millisecondes
+            displayTime()
+        }, 1000)
 
         // Chargement de l'icone
-        let time = new Date().getHours()
+        let time = date.getHours()
         if (time >= 6 && time < 21) {
             nowImg.src = `./assets/img/day/${apiResults.current.weather[0].icon}.svg`
         } else {
@@ -128,38 +162,6 @@ function callAPI(lat, long, timezone) {
                     break
             }
         }
-
-        // Heure en temps réel
-        clearInterval(realTime)
-        if (timezone === undefined) {
-            timezone = 3600
-        }
-        let td = apiResults.current.dt * 1000 + (timezone - 3600) * 1000
-
-        let date = new Date(td)
-        let hours = date.getHours()
-        let minutes = date.getMinutes()
-        let seconds = date.getSeconds()
-        hour.innerText = hours + " : " + minutes + " : " + seconds
-        
-        realTime = setInterval(function() {
-            td += 1000 // Temps js calculé en millisecondes
-            date = new Date(td)
-            hours = date.getHours()
-            minutes = date.getMinutes()
-            seconds = date.getSeconds()
-            if (hours < 10) {
-                hours = "0" + hours
-            }
-            if (minutes < 10) {
-                minutes = "0" + minutes
-            }
-            if (seconds < 10) {
-                seconds = "0" + seconds
-            }
-        
-            hour.innerText = hours + " : " + minutes + " : " + seconds
-        }, 1000)
         
         loading.classList.add("hidden")
         setTimeout(function() {
@@ -169,6 +171,13 @@ function callAPI(lat, long, timezone) {
 }
 
 // Nouvelle recherche
+city.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        e.preventDefault()
+        changeCity()
+    }
+})
+
 const cityBtn = document.querySelector(".meteo__info__changeCity")
 cityBtn.addEventListener("click", changeCity)
 
