@@ -98,18 +98,37 @@ body {
             @include flex-center;
             flex-direction: column;
 
-            p {
-                margin: 5px;
-                &:nth-child(1) {
-                    font-size: 1.5em;
-                    font-weight: bold;
+            form {
+                position: absolute;
+                z-index: 9;
+                top: -40px;
+                left: 15px;
+
+                label {
+                    margin-left: 1px ;
                 }
+                input {
+                    margin: 4px 0;
+                    &:nth-child(2) {
+                        padding: 2px;
+                    }
+                    &:nth-child(3):hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            p {
+                position: absolute;
+                width: 250px;
+                top: 55px;
+                left: 5px;
             }
         }
 
         &__press {
             position: absolute;
-            top: 160px;
+            top: 180px;
             left: 205px;
         }
 

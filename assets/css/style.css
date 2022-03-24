@@ -133,18 +133,39 @@ body {
           flex-direction: column;
 }
 
-.meteo__info__loc p {
-  margin: 5px;
+.meteo__info__loc form {
+  position: absolute;
+  z-index: 9;
+  top: -40px;
+  left: 15px;
 }
 
-.meteo__info__loc p:nth-child(1) {
-  font-size: 1.5em;
-  font-weight: bold;
+.meteo__info__loc form label {
+  margin-left: 1px;
+}
+
+.meteo__info__loc form input {
+  margin: 4px 0;
+}
+
+.meteo__info__loc form input:nth-child(2) {
+  padding: 2px;
+}
+
+.meteo__info__loc form input:nth-child(3):hover {
+  cursor: pointer;
+}
+
+.meteo__info__loc p {
+  position: absolute;
+  width: 250px;
+  top: 55px;
+  left: 5px;
 }
 
 .meteo__info__press {
   position: absolute;
-  top: 160px;
+  top: 180px;
   left: 205px;
 }
 

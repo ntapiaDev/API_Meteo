@@ -54,7 +54,7 @@ function callLoc(lat, long) {
         apiResults = data
         console.log(apiResults)
 
-        city.innerText = apiResults.name
+        city.placeholder = apiResults.name
     })
 }
 
@@ -127,6 +127,28 @@ function callAPI(lat, long) {
         }
 
         loading.classList.add("hidden")
+        setTimeout(function() {
+            loading.style.zIndex = "0"
+        }, 1500)
+    })
+}
+
+// Nouvelle recherche
+
+const cityBtn = document.querySelector(".meteo__info__changeCity")
+cityBtn.addEventListener("click", changeCity)
+
+function changeCity() {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city.value},frq&appid=${APIKEY}`)
+    .then((response) => {
+        return response.json()
+    })
+    .then((data) => {
+        apiResults = data
+
+        let lat = apiResults.coord.lat
+        let long = apiResults.coord.lon
+        callAPI(lat, long)
     })
 }
 
