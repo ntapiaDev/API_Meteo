@@ -1,6 +1,10 @@
 @import "mixins";
 @import "variables";
 
+@font-face {
+
+}
+
 *, ::before, ::after {
     box-sizing: border-box;
     margin: 0;
@@ -9,6 +13,8 @@
 
 body {
     height: 100vh;
+    color: #FFF;
+    text-shadow: $black-shadow;
     @include flex-center;
 }
 
@@ -17,7 +23,6 @@ body {
     width: 480px;
     height: 480px;
     border-radius: 50%;
-    border: 1px solid black;
     @include flex-center;
     flex-direction: column;
 
@@ -25,11 +30,11 @@ body {
     &__loading {
         position: absolute;
         z-index: 10;
-        width: 100%;
-        height: 100%;
+        width: 720px;
+        height: 720px;
         border-radius: 50%;
-        background-color: #666;
-        transition: opacity 1s ease-out;
+        background-color: #999;
+        transition: opacity 1.5s ease-out;
         @include flex-center;
 
         &.hidden {
@@ -41,21 +46,6 @@ body {
         }
     }
 
-    &__date {
-        margin: 25px;
-
-        &::first-letter {
-            text-transform: capitalize;
-        }
-    }
-
-    &__info {
-
-        &__weather::first-letter {
-            text-transform: uppercase;
-        }
-    }
-
     &__now {
         position: absolute;
         z-index: 5;
@@ -63,8 +53,99 @@ body {
         height: 250px;
         top: -50px;
         left: -50px;
+        border: 3px double #FFF;
         border-radius: 50%;
-        border: 1px solid black;
+        box-shadow: $light-shadow;
+
+        &__date {
+            position: absolute;
+            top: 45px;
+            left: 50px;
+            font-size: 1.2em;
+            &::first-letter {
+                text-transform: capitalize;
+            }
+        }
+
+        &__img {
+            width: 100%;
+        }
+
+        &__weather {
+            position: absolute;
+            top: 180px;
+            left: 40px;
+            &::first-letter {
+                text-transform: uppercase;
+            }
+        }
+
+        &__temp {
+            position: absolute;
+            top: 180px;
+            left: 130px;
+            font-size: 2em;
+            font-weight: bold;
+        }
+    }
+
+    &__info {
+        
+        &__loc {
+            position: absolute;
+            top: 90px;
+            left: 200px;
+            @include flex-center;
+            flex-direction: column;
+
+            p {
+                margin: 5px;
+                &:nth-child(1) {
+                    font-size: 1.5em;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        &__press {
+            position: absolute;
+            top: 160px;
+            left: 205px;
+        }
+
+        &__weather {
+            position: absolute;
+            top: 220px;
+            left: 72px;
+            width: 350px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__hour {
+            position: absolute;
+            top: 375px;
+            left: 138px;
+            font-size: 3em;
+        }
+    }
+
+    &__prevision {
+        position: absolute;
+        top: 250px;
+        left: 50px;
+        background-color: rgba(238, 238, 238, 0.25);
+        display: flex;
+        flex-wrap: wrap;
+
+        p {
+            padding: 10px;
+            border: 3px double #FFF;
+            box-shadow: $light-shadow;
+            &:nth-child(1) {
+                font-weight: bold;
+            }
+        }
     }
 
     &__week {
@@ -75,10 +156,52 @@ body {
         top: -120px;
         left: -120px;
         border-radius: 50%;
-        border: 1px solid red;
 
         &__day {
-            
+            position: absolute;
+            width: 118px;
+            height: 118px;
+            border-radius: 50%;
+            box-shadow: $light-shadow;
+            @include flex-center;
+            flex-direction: column;
+
+            p {
+                transform: translateY(20px);
+            }
+            img {
+                width: 75px;
+                transform: translateY(5px);
+            }
+
+            &.day1 {
+                top: 0;
+                left: 300px;
+            }
+            &.day2 {
+                top: 24px;
+                left: 417px;
+            }
+            &.day3 {
+                top: 91px;
+                left: 515px;
+            }
+            &.day4 {
+                top: 192px;
+                left: 579px;
+            }
+            &.day5 {
+                top: 309px;
+                left: 599px;
+            }
+            &.day6 {
+                top: 425px;
+                left: 573px;
+            }
+            &.day7 {
+                top: 521px;
+                left: 503px;
+            }
         }
     }
 }

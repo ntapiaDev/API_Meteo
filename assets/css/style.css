@@ -1,4 +1,4 @@
-*, ::before, ::after {
+@font-face {}*, ::before, ::after {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   margin: 0;
@@ -7,6 +7,8 @@
 
 body {
   height: 100vh;
+  color: #FFF;
+  text-shadow: 1px 0 0 #000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000, -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -23,7 +25,6 @@ body {
   width: 480px;
   height: 480px;
   border-radius: 50%;
-  border: 1px solid black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -42,12 +43,12 @@ body {
 .meteo__loading {
   position: absolute;
   z-index: 10;
-  width: 100%;
-  height: 100%;
+  width: 720px;
+  height: 720px;
   border-radius: 50%;
-  background-color: #666;
-  -webkit-transition: opacity 1s ease-out;
-  transition: opacity 1s ease-out;
+  background-color: #999;
+  -webkit-transition: opacity 1.5s ease-out;
+  transition: opacity 1.5s ease-out;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -67,18 +68,6 @@ body {
   width: 150px;
 }
 
-.meteo__date {
-  margin: 25px;
-}
-
-.meteo__date::first-letter {
-  text-transform: capitalize;
-}
-
-.meteo__info__weather::first-letter {
-  text-transform: uppercase;
-}
-
 .meteo__now {
   position: absolute;
   z-index: 5;
@@ -86,8 +75,120 @@ body {
   height: 250px;
   top: -50px;
   left: -50px;
+  border: 3px double #FFF;
   border-radius: 50%;
-  border: 1px solid black;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.meteo__now__date {
+  position: absolute;
+  top: 45px;
+  left: 50px;
+  font-size: 1.2em;
+}
+
+.meteo__now__date::first-letter {
+  text-transform: capitalize;
+}
+
+.meteo__now__img {
+  width: 100%;
+}
+
+.meteo__now__weather {
+  position: absolute;
+  top: 180px;
+  left: 40px;
+}
+
+.meteo__now__weather::first-letter {
+  text-transform: uppercase;
+}
+
+.meteo__now__temp {
+  position: absolute;
+  top: 180px;
+  left: 130px;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.meteo__info__loc {
+  position: absolute;
+  top: 90px;
+  left: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.meteo__info__loc p {
+  margin: 5px;
+}
+
+.meteo__info__loc p:nth-child(1) {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.meteo__info__press {
+  position: absolute;
+  top: 160px;
+  left: 205px;
+}
+
+.meteo__info__weather {
+  position: absolute;
+  top: 220px;
+  left: 72px;
+  width: 350px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.meteo__info__hour {
+  position: absolute;
+  top: 375px;
+  left: 138px;
+  font-size: 3em;
+}
+
+.meteo__prevision {
+  position: absolute;
+  top: 250px;
+  left: 50px;
+  background-color: rgba(238, 238, 238, 0.25);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.meteo__prevision p {
+  padding: 10px;
+  border: 3px double #FFF;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.meteo__prevision p:nth-child(1) {
+  font-weight: bold;
 }
 
 .meteo__week {
@@ -98,6 +199,73 @@ body {
   top: -120px;
   left: -120px;
   border-radius: 50%;
-  border: 1px solid red;
+}
+
+.meteo__week__day {
+  position: absolute;
+  width: 118px;
+  height: 118px;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.meteo__week__day p {
+  -webkit-transform: translateY(20px);
+          transform: translateY(20px);
+}
+
+.meteo__week__day img {
+  width: 75px;
+  -webkit-transform: translateY(5px);
+          transform: translateY(5px);
+}
+
+.meteo__week__day.day1 {
+  top: 0;
+  left: 300px;
+}
+
+.meteo__week__day.day2 {
+  top: 24px;
+  left: 417px;
+}
+
+.meteo__week__day.day3 {
+  top: 91px;
+  left: 515px;
+}
+
+.meteo__week__day.day4 {
+  top: 192px;
+  left: 579px;
+}
+
+.meteo__week__day.day5 {
+  top: 309px;
+  left: 599px;
+}
+
+.meteo__week__day.day6 {
+  top: 425px;
+  left: 573px;
+}
+
+.meteo__week__day.day7 {
+  top: 521px;
+  left: 503px;
 }
 /*# sourceMappingURL=style.css.map */
