@@ -1,6 +1,8 @@
 @import "placeholders";
 @import "variables";
 
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+
 *, ::before, ::after {
     box-sizing: border-box;
     margin: 0;
@@ -13,6 +15,7 @@ body {
     text-shadow: $black-shadow;
     background-position: center;
     background-size: cover;
+    font-family: 'Outfit', sans-serif;
     @extend %flex-center;
     overflow-y: hidden;
 }

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
 body, .meteo, .meteo__loading, .meteo__now__date, .meteo__info__loc, .meteo__info__statut, .meteo__info__timezone, .meteo__prevision, .meteo__prevision p, .meteo__week__day {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -23,6 +24,7 @@ body {
   text-shadow: 1px 0 0 #000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000, -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000;
   background-position: center;
   background-size: cover;
+  font-family: 'Outfit', sans-serif;
   overflow-y: hidden;
 }
 
