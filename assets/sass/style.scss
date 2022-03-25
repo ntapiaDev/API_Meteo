@@ -11,6 +11,8 @@ body {
     height: 100vh;
     color: #FFF;
     text-shadow: $black-shadow;
+    background-position: center;
+    background-size: cover;
     @extend %flex-center;
     overflow-y: hidden;
 }

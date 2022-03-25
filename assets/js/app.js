@@ -4,7 +4,9 @@ const APIKEY = "659eb6423c655c0f0e67fae273c7bd6a"
 let apiResults
 let realTime
 
+const body = document.querySelector("body")
 const meteo = document.querySelector(".meteo")
+
 
 const weather = document.querySelector(".meteo__now__weather")
 const temp = document.querySelector(".meteo__now__temp")
@@ -85,6 +87,36 @@ function callAPI(lat, long, timezone) {
         humidity.innerText = "Humidité de l'air : " + apiResults.current.humidity + "%"
         wind.innerText = "Vitesse du vent : " + apiResults.current.wind_speed.toFixed(0) + " km/h"
         windDic.style.transform = "rotate(" + apiResults.current.wind_deg + "deg)"
+
+        let image
+        switch(apiResults.current.weather[0].icon) {
+            case "01d":
+            case "01n":
+            case "02d":
+            case "02n":
+                image = "sunny"
+                break
+            case "03d":
+            case "03n":
+            case "04d":
+            case "04n":
+            case "09d":
+            case "09n":
+            case "13d":
+            case "13n": 
+            case "50d":
+            case "50n":
+                image = "cloudy"
+                break
+            case "10d":
+            case "10n":
+            case "11d":
+            case "11n":
+                image = "rainy"
+                break
+        }
+
+        body.style.backgroundImage = `url("./assets/img/${image}.jpg")`
 
         // Heure en temps réel
         if (realTime !== undefined) {
