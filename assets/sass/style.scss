@@ -1,9 +1,5 @@
-@import "mixins";
+@import "placeholders";
 @import "variables";
-
-// @font-face {
-
-// }
 
 *, ::before, ::after {
     box-sizing: border-box;
@@ -15,8 +11,8 @@ body {
     height: 100vh;
     color: #FFF;
     text-shadow: $black-shadow;
-    @include flex-center;
-    overflow: hidden;
+    @extend %flex-center;
+    overflow-y: hidden;
 }
 
 .meteo {
@@ -25,7 +21,7 @@ body {
     height: 480px;
     border-radius: 50%;
     box-shadow: $light-shadow;
-    @include flex-center;
+    @extend %flex-center;
     flex-direction: column;
 
     // Overlay de chargementde l'API
@@ -37,7 +33,7 @@ body {
         border-radius: 50%;
         background-color: #999;
         transition: opacity 1.5s ease-out;
-        @include flex-center;
+        @extend %flex-center;
 
         &.hidden {
             opacity: 0;
@@ -65,7 +61,7 @@ body {
             top: 45px;
             left: 22px;
             font-size: 1.2em;
-            @include flex-center;
+            @extend %flex-center;
             text-transform: capitalize;
         }
 
@@ -98,7 +94,7 @@ body {
             position: absolute;
             top: 90px;
             left: 200px;
-            @include flex-center;
+            @extend %flex-center;
             flex-direction: column;
 
             form {
@@ -152,7 +148,7 @@ body {
             font-weight: bold;
             font-size: 1.2em;
             text-shadow: $white-shadow;
-            @include flex-center();
+            @extend %flex-center;
 
             p.success {
                 color: green;
@@ -167,7 +163,7 @@ body {
             width: 200px;
             top: 435px;
             left: 138px;
-            @include flex-center();
+            @extend %flex-center;
         }
 
         &__hour {
@@ -185,7 +181,7 @@ body {
         width: 500px;
         display: flex;
         flex-wrap: wrap;
-        @include flex-center();
+        @extend %flex-center;
 
         &__value {
             text-shadow: none;
@@ -196,7 +192,7 @@ body {
             border: 3px double #FFF;
             box-shadow: $light-shadow;
             background-color: rgba(238, 238, 238, 0.25);
-            @include flex-center();
+            @extend %flex-center;
             &:nth-child(1) {
                 font-weight: bold;
             }
@@ -219,7 +215,7 @@ body {
             height: 118px;
             border-radius: 50%;
             box-shadow: $light-shadow;
-            @include flex-center;
+            @extend %flex-center;
             flex-direction: column;
             transition: transform 2s;
 
