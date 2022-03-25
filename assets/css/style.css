@@ -100,8 +100,8 @@ body {
 
 .meteo__now__temp {
   position: absolute;
-  top: 175px;
-  left: 130px;
+  top: 201px;
+  left: 98px;
   font-size: 2em;
   font-weight: bold;
   text-shadow: 1px 0 0 #666, 1px 1px 0 #666, 0 1px 0 #666, -1px 1px 0 #666, -1px 0 0 #666, -1px -1px 0 #666, 0 -1px 0 #666, 1px -1px 0 #666;
