@@ -60,9 +60,11 @@ body {
 
         &__date {
             position: absolute;
+            width: 200px;
             top: 45px;
-            left: 50px;
+            left: 22px;
             font-size: 1.2em;
+            @include flex-center;
             &::first-letter {
                 text-transform: capitalize;
             }
@@ -83,7 +85,7 @@ body {
 
         &__temp {
             position: absolute;
-            top: 180px;
+            top: 175px;
             left: 130px;
             font-size: 2em;
             font-weight: bold;
@@ -136,7 +138,7 @@ body {
         &__weather {
             position: absolute;
             top: 220px;
-            left: 72px;
+            left: 66px;
             width: 350px;
             display: flex;
             justify-content: space-between;
@@ -171,7 +173,7 @@ body {
         &__hour {
             position: absolute;
             top: 375px;
-            left: 138px;
+            left: 133px;
             font-size: 3em;
         }
     }

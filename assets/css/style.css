@@ -85,9 +85,19 @@ body {
 
 .meteo__now__date {
   position: absolute;
+  width: 200px;
   top: 45px;
-  left: 50px;
+  left: 22px;
   font-size: 1.2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .meteo__now__date::first-letter {
@@ -110,7 +120,7 @@ body {
 
 .meteo__now__temp {
   position: absolute;
-  top: 180px;
+  top: 175px;
   left: 130px;
   font-size: 2em;
   font-weight: bold;
@@ -174,7 +184,7 @@ body {
 .meteo__info__weather {
   position: absolute;
   top: 220px;
-  left: 72px;
+  left: 66px;
   width: 350px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -230,7 +240,7 @@ body {
 .meteo__info__hour {
   position: absolute;
   top: 375px;
-  left: 138px;
+  left: 133px;
   font-size: 3em;
 }
 
