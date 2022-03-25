@@ -46,7 +46,7 @@ body {
 
     &__now {
         position: absolute;
-        z-index: 5;
+        z-index: 6;
         width: 250px;
         height: 250px;
         top: -50px;
@@ -54,6 +54,7 @@ body {
         border: 3px double #FFF;
         border-radius: 50%;
         box-shadow: $light-shadow;
+        transition: scale 0.25s ease;
 
         &__date {
             position: absolute;
@@ -99,7 +100,7 @@ body {
 
             form {
                 position: absolute;
-                z-index: 9;
+                z-index: 5;
                 top: -40px;
                 left: 15px;
 
@@ -138,6 +139,13 @@ body {
             width: 350px;
             display: flex;
             justify-content: space-between;
+
+            .fa-location-arrow {
+                position: absolute;
+                top: 2px;
+                left: 360px;
+                transition: transform 2s;
+            }
         }
 
         &__statut {
@@ -158,19 +166,19 @@ body {
             }
         }
 
-        &__timezone {
-            position: absolute;
-            width: 200px;
-            top: 435px;
-            left: 138px;
-            @extend %flex-center;
-        }
-
         &__hour {
             position: absolute;
             top: 375px;
             left: 133px;
             font-size: 3em;
+        }
+
+        &__timezone {
+            position: absolute;
+            width: 200px;
+            top: 435px;
+            left: 140px;
+            @extend %flex-center;
         }
     }
 
