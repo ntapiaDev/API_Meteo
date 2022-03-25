@@ -190,7 +190,8 @@ function callAPI(lat, long, timezone) {
         }
 
         function colorTemp(temp) {
-            let colors = ["#1200ff", "#002eff", "#0043ff", "#0053ff", "#0060ff", "#006cff", "#0077ff", "#0081ff", "#008aff", "#0093ff", "#009cff", "#00a4ff", "#00acff", "#00b4ff", "#00bbff", "#00c2ff", "#00caff", "#00d0ff", "#00d7ff", "#00deff", "#00e4ff", "#00eaff", "#00e8f6", "#00e6eb", "#00e4e0", "#00e2d3", "#00dfc6", "#00ddb8", "#00daaa", "#00d69a", "#1bd38b", "#36cf7b", "#48cb6a", "#57c75a", "#65c248", "#71bd36", "#7cb820", "#87b300", "#92ad00", "#9da600", "#a7a000", "#b19800", "#bb9000", "#c58700", "#cf7e00", "#d87300", "#e16700", "#ea5900", "#f14800", "#f93200", "#ff0000"]
+            // let colors = ["#1200ff", "#002eff", "#0043ff", "#0053ff", "#0060ff", "#006cff", "#0077ff", "#0081ff", "#008aff", "#0093ff", "#009cff", "#00a4ff", "#00acff", "#00b4ff", "#00bbff", "#00c2ff", "#00caff", "#00d0ff", "#00d7ff", "#00deff", "#00e4ff", "#00eaff", "#00e8f6", "#00e6eb", "#00e4e0", "#00e2d3", "#00dfc6", "#00ddb8", "#00daaa", "#00d69a", "#1bd38b", "#36cf7b", "#48cb6a", "#57c75a", "#65c248", "#71bd36", "#7cb820", "#87b300", "#92ad00", "#9da600", "#a7a000", "#b19800", "#bb9000", "#c58700", "#cf7e00", "#d87300", "#e16700", "#ea5900", "#f14800", "#f93200", "#ff0000"]
+            let colors = ["#0006ff","#0039ff","#0052ff","#0065ff","#0075ff","#0083ff","#0090ff","#009dff","#00a8ff","#00b3ff","#00beff","#00c8ff","#00d2ff","#00dcff","#00e5ff","#00eeff","#00f7fa","#00fff6","#00ffee","#00ffe5","#07ffdc","#26ffd1","#3bffc5","#4fffb9","#60ffab","#72ff9e","#82ff8f","#93ff80","#a3ff71","#b3ff61","#c4ff50","#d4ff3e","#e5ff28","#f6ff00","#faf400","#fdea00","#ffdf00","#ffd400","#ffc800","#ffbd00","#ffb100","#ffa600","#ff9900","#ff8d00","#ff8000","#ff7300","#ff6400","#ff5500","#ff4300","#ff2d00","#ff0000"]
             for (let i = 0; i < colors.length; i++) {
                 if (temp === (i - 10)) {
                     let color = colors[i]

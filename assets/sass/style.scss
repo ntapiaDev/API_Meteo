@@ -84,7 +84,7 @@ body {
             left: 130px;
             font-size: 2em;
             font-weight: bold;
-            text-shadow: none;
+            text-shadow: $grey-shadow;
         }
     }
 
@@ -184,7 +184,7 @@ body {
         @extend %flex-center;
 
         &__value {
-            text-shadow: none;
+            text-shadow: $grey-shadow;
         }
 
         p {
@@ -258,7 +258,7 @@ body {
         }
 
         &__value {
-            text-shadow: none;
+            text-shadow: $grey-shadow;
         }
     }
 }

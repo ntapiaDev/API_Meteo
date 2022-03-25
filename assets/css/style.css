@@ -98,7 +98,7 @@ body {
   left: 130px;
   font-size: 2em;
   font-weight: bold;
-  text-shadow: none;
+  text-shadow: 1px 0 0 #666, 1px 1px 0 #666, 0 1px 0 #666, -1px 1px 0 #666, -1px 0 0 #666, -1px -1px 0 #666, 0 -1px 0 #666, 1px -1px 0 #666;
 }
 
 .meteo__info__loc {
@@ -205,7 +205,7 @@ body {
 }
 
 .meteo__prevision__value {
-  text-shadow: none;
+  text-shadow: 1px 0 0 #666, 1px 1px 0 #666, 0 1px 0 #666, -1px 1px 0 #666, -1px 0 0 #666, -1px -1px 0 #666, 0 -1px 0 #666, 1px -1px 0 #666;
 }
 
 .meteo__prevision p {
@@ -298,6 +298,6 @@ body {
 }
 
 .meteo__week__value {
-  text-shadow: none;
+  text-shadow: 1px 0 0 #666, 1px 1px 0 #666, 0 1px 0 #666, -1px 1px 0 #666, -1px 0 0 #666, -1px -1px 0 #666, 0 -1px 0 #666, 1px -1px 0 #666;
 }
 /*# sourceMappingURL=style.css.map */
