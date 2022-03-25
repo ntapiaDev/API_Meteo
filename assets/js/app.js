@@ -77,7 +77,9 @@ function callAPI(lat, long, timezone) {
         console.log(apiResults)
 
         weather.innerText = apiResults.current.weather[0].description
-        temp.innerText = Math.trunc(apiResults.current.temp) + "°C"
+        let tempNow = Math.trunc(apiResults.current.temp)
+        let colorNow = colorTemp(tempNow)
+        temp.innerHTML = `<span style="color: ${colorNow}">${tempNow}°C</span>`
         press.innerText = "Pression atmosphérique : " + apiResults.current.pressure + " hPa"
         humidity.innerText = "Humidité de l'air : " + apiResults.current.humidity + "%"
         wind.innerText = "Vitesse du vent : " + apiResults.current.wind_speed.toFixed(0) + " km/h"
@@ -143,13 +145,17 @@ function callAPI(lat, long, timezone) {
                 previsionName = previsionName - 24
             }
             previsionNames[i].innerText = previsionName + "h"
-            previsionValues[i].innerText = Math.trunc(apiResults.hourly[i * 3].temp) + "°C"
+            let tempDay = Math.trunc(apiResults.hourly[i * 3].temp)
+            let colorDay = colorTemp(tempDay)
+            previsionValues[i].innerHTML = `<span style="color: ${colorDay}">${tempDay}°C</span>`
         }
 
         // Prévision de la semaine
         for (let i = 0; i < weeks.length; i++) {
             weekNames[i].innerText = actualDays[i].slice(0, 3) + " " + new Date(apiResults.daily[i + 1].dt * 1000 + (timezone - 3600) * 1000).getDate()
-            weekValues[i].innerText = Math.trunc(apiResults.daily[i + 1].temp.day) + "°C"
+            let tempWeek = Math.trunc(apiResults.daily[i + 1].temp.day)
+            let colorWeek = colorTemp(tempWeek)
+            weekValues[i].innerHTML = `<span style="color: ${colorWeek}">${tempWeek}°C</span>`
             weekImg[i].src = `./assets/img/day/${apiResults.daily[i + 1].weather[0].icon}.svg`
             changeBackground(weeks[i], apiResults.daily[i + 1].weather[0].icon)
         }
@@ -180,6 +186,16 @@ function callAPI(lat, long, timezone) {
                 case "11n":
                     target.style.background = darkSky
                     break
+            }
+        }
+
+        function colorTemp(temp) {
+            let colors = ["#1200ff", "#002eff", "#0043ff", "#0053ff", "#0060ff", "#006cff", "#0077ff", "#0081ff", "#008aff", "#0093ff", "#009cff", "#00a4ff", "#00acff", "#00b4ff", "#00bbff", "#00c2ff", "#00caff", "#00d0ff", "#00d7ff", "#00deff", "#00e4ff", "#00eaff", "#00e8f6", "#00e6eb", "#00e4e0", "#00e2d3", "#00dfc6", "#00ddb8", "#00daaa", "#00d69a", "#1bd38b", "#36cf7b", "#48cb6a", "#57c75a", "#65c248", "#71bd36", "#7cb820", "#87b300", "#92ad00", "#9da600", "#a7a000", "#b19800", "#bb9000", "#c58700", "#cf7e00", "#d87300", "#e16700", "#ea5900", "#f14800", "#f93200", "#ff0000"]
+            for (let i = 0; i < colors.length; i++) {
+                if (temp === (i - 10)) {
+                    let color = colors[i]
+                    return color
+                }
             }
         }
         

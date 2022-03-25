@@ -88,6 +88,7 @@ body {
             left: 130px;
             font-size: 2em;
             font-weight: bold;
+            text-shadow: none;
         }
     }
 
@@ -180,11 +181,15 @@ body {
     &__prevision {
         position: absolute;
         top: 250px;
-        left: 20px;
-        width: 440px;
+        left: -10px;
+        width: 500px;
         display: flex;
         flex-wrap: wrap;
         @include flex-center();
+
+        &__value {
+            text-shadow: none;
+        }
 
         p {
             padding: 10px;
@@ -254,6 +259,10 @@ body {
                 top: 521px;
                 left: 503px;
             }
+        }
+
+        &__value {
+            text-shadow: none;
         }
     }
 }
