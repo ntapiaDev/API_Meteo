@@ -21,6 +21,8 @@ body {
   height: 100vh;
   color: #FFF;
   text-shadow: 1px 0 0 #000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000, -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000;
+  background-position: center;
+  background-size: cover;
   overflow-y: hidden;
 }
 
@@ -103,6 +105,24 @@ body {
   text-shadow: 1px 0 0 #666, 1px 1px 0 #666, 0 1px 0 #666, -1px 1px 0 #666, -1px 0 0 #666, -1px -1px 0 #666, 0 -1px 0 #666, 1px -1px 0 #666;
 }
 
+.meteo__info .api {
+  position: absolute;
+  z-index: 9;
+  top: 13px;
+  left: 228px;
+  font-size: 0.8em;
+  opacity: 0.25;
+}
+
+.meteo__info .api a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.meteo__info .api a:hover {
+  cursor: pointer;
+}
+
 .meteo__info__loc {
   position: absolute;
   top: 90px;
@@ -129,6 +149,7 @@ body {
 }
 
 .meteo__info__loc form input:nth-child(2) {
+  width: 180px;
   padding: 2px;
 }
 
