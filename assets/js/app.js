@@ -222,6 +222,9 @@ function changeCity() {
                 coord.innerText = `Latitude : ${lat.toFixed(2)} - Longitude : ${long.toFixed(2)}`
                 rotate += 360
                 week.style.transform = "rotate(" + rotate + "deg)"
+                for (let i = 0; i < weeks.length; i++) {
+                    weeks[i].style.transform = "rotate(" + (- rotate) + "deg)"
+                }
                 statut.innerHTML = '<p class="success">Recherche effectuée</p>'
             } else {
                 statut.innerHTML = '<p class="error">Ville non trouvée</p>'
