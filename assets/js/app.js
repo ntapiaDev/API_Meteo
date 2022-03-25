@@ -148,7 +148,7 @@ function callAPI(lat, long, timezone) {
 
         // Prévision de la semaine
         for (let i = 0; i < weeks.length; i++) {
-            weekNames[i].innerText = actualDays[i].slice(0, 3)
+            weekNames[i].innerText = actualDays[i].slice(0, 3) + " " + new Date(apiResults.daily[i + 1].dt * 1000 + (timezone - 3600) * 1000).getDate()
             weekValues[i].innerText = Math.trunc(apiResults.daily[i + 1].temp.day) + "°C"
             weekImg[i].src = `./assets/img/day/${apiResults.daily[i + 1].weather[0].icon}.svg`
             changeBackground(weeks[i], apiResults.daily[i + 1].weather[0].icon)
@@ -197,6 +197,13 @@ city.addEventListener("keydown", function(e) {
         changeCity()
     }
 })
+country.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        e.preventDefault()
+        changeCity()
+    }
+})
+
 const cityBtn = document.querySelector(".meteo__info__changeCity")
 cityBtn.addEventListener("click", changeCity)
 

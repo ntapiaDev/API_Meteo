@@ -66,9 +66,7 @@ body {
             left: 22px;
             font-size: 1.2em;
             @include flex-center;
-            &::first-letter {
-                text-transform: capitalize;
-            }
+            text-transform: capitalize;
         }
 
         &__img {
