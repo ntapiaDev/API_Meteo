@@ -86,7 +86,7 @@ function callAPI(lat, long, timezone) {
         press.innerText = "Pression atmosphérique : " + apiResults.current.pressure + " hPa"
         humidity.innerText = "Humidité de l'air : " + apiResults.current.humidity + "%"
         wind.innerText = "Vitesse du vent : " + apiResults.current.wind_speed.toFixed(0) + " km/h"
-        windDic.style.transform = "rotate(" + apiResults.current.wind_deg + "deg)"
+        windDic.style.transform = "rotate(" + (apiResults.current.wind_deg + 135) + "deg)"
 
         let image
         switch(apiResults.current.weather[0].icon) {
