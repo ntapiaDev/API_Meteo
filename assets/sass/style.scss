@@ -56,7 +56,7 @@ body {
         border: 3px double #FFF;
         border-radius: 50%;
         box-shadow: $light-shadow;
-        transition: scale 0.25s ease;
+        transition: transform 0.25s ease;
 
         &__date {
             position: absolute;

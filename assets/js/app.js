@@ -283,9 +283,9 @@ function changeCity() {
                     weeks[i].style.transform = "rotate(" + (- rotate) + "deg)"
                 }
                 statut.innerHTML = '<p class="success">Recherche effectuée</p>'
-                now.style.scale = "1.5"
+                now.style.transform = "scale(1.5)"
                 setTimeout(function() {
-                    now.style.scale = "1"
+                    now.style.transform = "scale(1)"
                 }, 250)
             } else {
                 statut.innerHTML = '<p class="error">Ville non trouvée</p>'
